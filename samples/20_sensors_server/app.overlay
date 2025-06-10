@@ -1,51 +1,89 @@
-/*
- * Copyright (c) 2021 Nordic Semiconductor ASA
- *
- * SPDX-License-Identifier: LicenseRef-Nordic-5-Clause
- */
+/* SPDX-License-Identifier: LicenseRef-Nordic-5-Clause */
+
+#include <dt-bindings/gpio/gpio.h>
+#include <dt-bindings/spi/spi.h>
+#include <dt-bindings/pinctrl/nrf-pinctrl.h>
 
 / {
-	zephyr,user {
-		battery-charge-gpios = <&gpio1 0 (GPIO_PULL_UP | GPIO_ACTIVE_LOW)>;
-	};
+    zephyr,user {
+        battery-charge-gpios = <&gpio1 0 (GPIO_PULL_UP | GPIO_ACTIVE_LOW)>;
+    };
 };
 
+/* ADC configuration (unchanged) */
 &adc {
-	#address-cells = <1>;
-	#size-cells = <0>;
-
-	channel@2 {
-		reg = <2>;
-		zephyr,gain = "ADC_GAIN_1";
-		zephyr,reference = "ADC_REF_INTERNAL";
-		zephyr,acquisition-time = <ADC_ACQ_TIME(ADC_ACQ_TIME_MICROSECONDS, 40)>;
-		zephyr,input-positive = <NRF_SAADC_AIN2>;
-		zephyr,resolution = <12>;
-		zephyr,oversampling = <4>;
-	};
+    #address-cells = <1>;
+    #size-cells = <0>;
+    channel@2 {
+        reg = <2>;
+        zephyr,gain = "ADC_GAIN_1";
+        zephyr,reference = "ADC_REF_INTERNAL";
+        zephyr,acquisition-time = <ADC_ACQ_TIME(ADC_ACQ_TIME_MICROSECONDS, 40)>;
+        zephyr,input-positive = <NRF_SAADC_AIN2>;
+        zephyr,resolution = <12>;
+        zephyr,oversampling = <4>;
+    };
 };
 
+/* I2C: retain BH1749 and BME688, remove BMM150 */
 &i2c1 {
-	compatible = "nordic,nrf-twim";
-	status = "okay";
-	clock-frequency = <I2C_BITRATE_FAST>;
+    compatible = "nordic,nrf-twim";
+    status = "okay";
+    clock-frequency = <I2C_BITRATE_FAST>;
 
-	pinctrl-0 = <&i2c1_default>;
-	pinctrl-1 = <&i2c1_sleep>;
-	pinctrl-names = "default", "sleep";
-	bmm150: bmm150@10 {
-		compatible = "bosch,bmm150";
-		reg = <0x10>;
-	};
+    bh1749@38 {
+        compatible = "rohm,bh1749";
+        reg = <0x38>;
+        int-gpios = <&gpio1 5 (GPIO_PULL_UP | GPIO_ACTIVE_LOW)>;
+    };
+    
+    bme688@76 {
+        compatible = "bosch,bme688";
+        reg = <0x76>;
+    };
+};
 
-	bh1749@38 {
-		compatible = "rohm,bh1749";
-		reg = <0x38>;
-		int-gpios = <&gpio1 5 (GPIO_PULL_UP | GPIO_ACTIVE_LOW)>;
-	};
+/* Pinctrl for SPI4: define pins SCK, MOSI, MISO on port 1 */
+&pinctrl {
+    spi4_default: spi4_default {
+        group1 {
+            psels = <NRF_PSEL(SPIM_SCK, 1, 15),
+                     NRF_PSEL(SPIM_MOSI, 1, 13),
+                     NRF_PSEL(SPIM_MISO, 1, 14)>;
+        };
+    };
+    
+    spi4_sleep: spi4_sleep {
+        group1 {
+            psels = <NRF_PSEL(SPIM_SCK, 1, 15),
+                     NRF_PSEL(SPIM_MOSI, 1, 13),
+                     NRF_PSEL(SPIM_MISO, 1, 14)>;
+            low-power-enable;
+        };
+    };
+};
 
-	bme688@76 {
-		compatible = "bosch,bme688";
-		reg = <0x76>;
-	};
+/* Activate SPI4 and assign pinctrl + chip select */
+/* Add spi_fwd label to fix the undefined reference error */
+&spi4 {
+    spi_fwd: spi_fwd {
+        /* This is a temporary workaround - define what spi_fwd should be */
+        status = "disabled";
+    };
+    
+    status = "okay";
+    pinctrl-0 = <&spi4_default>;
+    pinctrl-1 = <&spi4_sleep>;
+    pinctrl-names = "default", "sleep";
+    cs-gpios = <&gpio1 4 GPIO_ACTIVE_LOW>;
+    
+    /* Add BMI270 IMU as child node of SPI4 */
+    bmi270@0 {
+        compatible = "bosch,bmi270";
+        status = "okay";
+        reg = <0>;
+        spi-max-frequency = <8000000>;
+        /* Add interrupt pin if needed */
+        /* int-gpios = <&gpio1 6 (GPIO_PULL_UP | GPIO_ACTIVE_LOW)>; */
+    };
 };

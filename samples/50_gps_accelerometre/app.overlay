@@ -1,0 +1,53 @@
+#include <dt-bindings/gpio/gpio.h>
+
+/* ADC — configuration inchangée */
+&adc {
+    #address-cells = <1>;
+    #size-cells = <0>;
+    channel@2 {
+        reg = <2>;
+        zephyr,gain = "ADC_GAIN_1";
+        zephyr,reference = "ADC_REF_INTERNAL";
+        zephyr,acquisition-time = <ADC_ACQ_TIME(ADC_ACQ_TIME_MICROSECONDS, 40)>;
+        zephyr,input-positive = <NRF_SAADC_AIN2>;
+        zephyr,resolution = <12>;
+        zephyr,oversampling = <4>;
+    };
+};
+
+/* I²C — capteurs existants inchangés */
+&i2c1 {
+    compatible = "nordic,nrf-twim";
+    status = "okay";
+    clock-frequency = <I2C_BITRATE_FAST>;
+
+    bmm150: bmm150@10 {
+        compatible = "bosch,bmm150";
+        reg = <0x10>;
+    };
+    bh1749@38 {
+        compatible = "rohm,bh1749";
+        reg = <0x38>;
+        int-gpios = <&gpio1 5 (GPIO_PULL_UP | GPIO_ACTIVE_LOW)>;
+    };
+    bme688@76 {
+        compatible = "bosch,bme688";
+        reg = <0x76>;
+    };
+};
+
+/* SPI4 — activation du bus, avrc pinctrl & CS */
+&spi4 {
+    status = "okay";
+    pinctrl-0 = <&spi_fwd>;
+    pinctrl-names = "default";
+    cs-gpios = <&gpio1 4 GPIO_ACTIVE_LOW>;
+};
+
+/* BMI270 IMU — accéléro + gyro */
+&bmi270 {
+    compatible = "bosch,bmi270";
+    status = "okay";
+    spi-max-frequency = <8000000>;
+    reg = <1>;
+};

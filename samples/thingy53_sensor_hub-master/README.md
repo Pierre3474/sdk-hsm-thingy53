@@ -1,0 +1,1 @@
+https://devzone.nordicsemi.com/nordic/nordic-blog/b/blog/posts/thingy-53-sensor-hub
