@@ -1,0 +1,112 @@
+/* SPDX-License-Identifier: LicenseRef-Nordic-5-Clause */
+#include <dt-bindings/gpio/gpio.h>
+#include <dt-bindings/spi/spi.h>
+#include <dt-bindings/pinctrl/nrf-pinctrl.h>
+
+/ {
+    aliases {
+        battery-charge = &battery_charge_gpio;
+        /* Alias PWM LEDS (seulement vert et bleu, noms conformes Zephyr) */
+        pwmled1 = &pwm_led_green;
+        pwmled2 = &pwm_led_blue;
+    };
+
+    zephyr,user {
+        battery-charge-gpios = <&gpio1 0 (GPIO_PULL_UP | GPIO_ACTIVE_LOW)>;
+    };
+
+    battery_charge_gpio: battery-charge-gpio {
+        compatible = "gpio-leds";
+        gpios = <&gpio1 0 (GPIO_PULL_UP | GPIO_ACTIVE_LOW)>;
+        label = "Battery charge detection";
+    };
+};
+
+/* ADC configuration */
+&adc {
+    #address-cells = <1>;
+    #size-cells = <0>;
+    channel@2 {
+        reg = <2>;
+        zephyr,gain = "ADC_GAIN_1";
+        zephyr,reference = "ADC_REF_INTERNAL";
+        zephyr,acquisition-time = <40>;
+        zephyr,input-positive = <2>;
+        zephyr,resolution = <12>;
+        zephyr,oversampling = <4>;
+    };
+};
+
+/* I2C bus with BH1749 and BME688 */
+&i2c1 {
+    status = "okay";
+    clock-frequency = <I2C_BITRATE_FAST>;
+
+    bh1749@38 {
+        compatible = "rohm,bh1749";
+        reg = <0x38>;
+        int-gpios = <&gpio1 5 (GPIO_PULL_UP | GPIO_ACTIVE_LOW)>;
+    };
+
+    bme688@76 {
+        compatible = "bosch,bme688";
+        reg = <0x76>;
+    };
+};
+
+/* PWM LED nodes (vert et bleu uniquement) */
+&pwm0 {
+    status = "okay";
+    pwm_led_green: pwm_led_green {
+        pwms = <&pwm0 0 20000 PWM_POLARITY_NORMAL>;
+        label = "Green PWM LED";
+    };
+    pwm_led_blue: pwm_led_blue {
+        pwms = <&pwm0 1 20000 PWM_POLARITY_NORMAL>;
+        label = "Blue PWM LED";
+    };
+};
+
+/* Pinctrl for SPI4 */
+&pinctrl {
+    spi4_default: spi4_default {
+        group1 {
+            psels = <NRF_PSEL(SPIM_SCK, 1, 15)>,
+                    <NRF_PSEL(SPIM_MOSI, 1, 13)>,
+                    <NRF_PSEL(SPIM_MISO, 1, 14)>;
+        };
+    };
+
+    spi4_sleep: spi4_sleep {
+        group1 {
+            psels = <NRF_PSEL(SPIM_SCK, 1, 15)>,
+                    <NRF_PSEL(SPIM_MOSI, 1, 13)>,
+                    <NRF_PSEL(SPIM_MISO, 1, 14)>;
+            low-power-enable;
+        };
+    };
+};
+
+/* SPI4 setup with BMI270 as a child node */
+&spi4 {
+    status = "okay";
+    pinctrl-0 = <&spi4_default>;
+    pinctrl-1 = <&spi4_sleep>;
+    pinctrl-names = "default", "sleep";
+    cs-gpios = <&gpio1 4 GPIO_ACTIVE_LOW>;
+
+    spi_fwd: spi_fwd@0 {
+        status = "disabled";
+        reg = <0>;
+    };
+
+    bmi270@0 {
+        compatible = "bosch,bmi270";
+        reg = <0>;
+        status = "okay";
+        spi-max-frequency = <8000000>;
+        /* Uncomment if using INT pin:
+         * int-gpios = <&gpio1 6 (GPIO_PULL_UP | GPIO_ACTIVE_LOW)>;
+         */
+    };
+};

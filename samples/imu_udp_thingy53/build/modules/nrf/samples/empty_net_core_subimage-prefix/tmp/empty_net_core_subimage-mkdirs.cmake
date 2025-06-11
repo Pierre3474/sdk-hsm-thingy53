@@ -1,0 +1,27 @@
+# Distributed under the OSI-approved BSD 3-Clause License.  See accompanying
+# file LICENSE.rst or https://cmake.org/licensing for details.
+
+cmake_minimum_required(VERSION ${CMAKE_VERSION}) # this file comes with cmake
+
+# If CMAKE_DISABLE_SOURCE_CHANGES is set to true and the source directory is an
+# existing directory in our source tree, calling file(MAKE_DIRECTORY) on it
+# would cause a fatal error, even though it would be a no-op.
+if(NOT EXISTS "/Users/pierre.urtado/thingy53-ws/nrf/samples/nrf5340/empty_net_core")
+  file(MAKE_DIRECTORY "/Users/pierre.urtado/thingy53-ws/nrf/samples/nrf5340/empty_net_core")
+endif()
+file(MAKE_DIRECTORY
+  "/Users/pierre.urtado/thingy53-ws/hsm/samples/imu_udp_thingy53/build/empty_net_core"
+  "/Users/pierre.urtado/thingy53-ws/hsm/samples/imu_udp_thingy53/build/modules/nrf/samples/empty_net_core_subimage-prefix"
+  "/Users/pierre.urtado/thingy53-ws/hsm/samples/imu_udp_thingy53/build/modules/nrf/samples/empty_net_core_subimage-prefix/tmp"
+  "/Users/pierre.urtado/thingy53-ws/hsm/samples/imu_udp_thingy53/build/modules/nrf/samples/empty_net_core_subimage-prefix/src/empty_net_core_subimage-stamp"
+  "/Users/pierre.urtado/thingy53-ws/hsm/samples/imu_udp_thingy53/build/modules/nrf/samples/empty_net_core_subimage-prefix/src"
+  "/Users/pierre.urtado/thingy53-ws/hsm/samples/imu_udp_thingy53/build/modules/nrf/samples/empty_net_core_subimage-prefix/src/empty_net_core_subimage-stamp"
+)
+
+set(configSubDirs )
+foreach(subDir IN LISTS configSubDirs)
+    file(MAKE_DIRECTORY "/Users/pierre.urtado/thingy53-ws/hsm/samples/imu_udp_thingy53/build/modules/nrf/samples/empty_net_core_subimage-prefix/src/empty_net_core_subimage-stamp/${subDir}")
+endforeach()
+if(cfgdir)
+  file(MAKE_DIRECTORY "/Users/pierre.urtado/thingy53-ws/hsm/samples/imu_udp_thingy53/build/modules/nrf/samples/empty_net_core_subimage-prefix/src/empty_net_core_subimage-stamp${cfgdir}") # cfgdir has leading slash
+endif()

@@ -1,0 +1,11 @@
+// /Users/pierre.urtado/thingy53-ws/hsm/samples/20_sensors_server/build/802154_rpmsg/zephyr/zephyr_pre0.elf
+digraph "Device dependency graph" {
+	42 [label="clock@41005000\nOrdinal: 42 | Handle: 1\n/soc/clock@41005000"]
+	55 [label="gpio@418c0800\nOrdinal: 55 | Handle: 2\n/soc/gpio@418c0800"]
+	7 [label="gpio@418c0500\nOrdinal: 7 | Handle: 3\n/soc/gpio@418c0500"]
+	52 [label="random@41009000\nOrdinal: 52 | Handle: 4\n/soc/random@41009000"]
+	20 [label="ipc0\nOrdinal: 20 | Handle: 5\n/ipc/ipc0"]
+	19 [label="mbox@41012000\nOrdinal: 19 | Handle: 6\n/soc/mbox@41012000"]
+	61 [label="temp@41010000\nOrdinal: 61 | Handle: 7\n/soc/temp@41010000"]
+	19 -> 20
+}

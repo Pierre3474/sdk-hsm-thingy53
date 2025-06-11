@@ -1,0 +1,9 @@
+&i2c1 {
+    status = "okay";
+    bmi270@68 {
+        compatible = "bosch,bmi270";
+        reg = <0x68>;
+        label = "BMI270";
+        int-gpios = <&gpio0 29 GPIO_ACTIVE_LOW>;
+    };
+};

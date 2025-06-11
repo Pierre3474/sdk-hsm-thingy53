@@ -1,0 +1,43 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/Users/pierre.urtado/thingy53-ws/hsm/samples/imu_udp_thingy53/build_app/modules/mcuboot/CMakeFiles/mcuboot_subimage"
+		},
+		{
+			"file" : "/Users/pierre.urtado/thingy53-ws/hsm/samples/imu_udp_thingy53/build_app/modules/mcuboot/CMakeFiles/mcuboot_subimage.rule"
+		},
+		{
+			"file" : "/Users/pierre.urtado/thingy53-ws/hsm/samples/imu_udp_thingy53/build_app/modules/mcuboot/CMakeFiles/mcuboot_subimage-complete.rule"
+		},
+		{
+			"file" : "/Users/pierre.urtado/thingy53-ws/hsm/samples/imu_udp_thingy53/build_app/modules/mcuboot/mcuboot_subimage-prefix/src/mcuboot_subimage-stamp/mcuboot_subimage-build.rule"
+		},
+		{
+			"file" : "/Users/pierre.urtado/thingy53-ws/hsm/samples/imu_udp_thingy53/build_app/modules/mcuboot/mcuboot_subimage-prefix/src/mcuboot_subimage-stamp/mcuboot_subimage-configure.rule"
+		},
+		{
+			"file" : "/Users/pierre.urtado/thingy53-ws/hsm/samples/imu_udp_thingy53/build_app/modules/mcuboot/mcuboot_subimage-prefix/src/mcuboot_subimage-stamp/mcuboot_subimage-download.rule"
+		},
+		{
+			"file" : "/Users/pierre.urtado/thingy53-ws/hsm/samples/imu_udp_thingy53/build_app/modules/mcuboot/mcuboot_subimage-prefix/src/mcuboot_subimage-stamp/mcuboot_subimage-install.rule"
+		},
+		{
+			"file" : "/Users/pierre.urtado/thingy53-ws/hsm/samples/imu_udp_thingy53/build_app/modules/mcuboot/mcuboot_subimage-prefix/src/mcuboot_subimage-stamp/mcuboot_subimage-mkdir.rule"
+		},
+		{
+			"file" : "/Users/pierre.urtado/thingy53-ws/hsm/samples/imu_udp_thingy53/build_app/modules/mcuboot/mcuboot_subimage-prefix/src/mcuboot_subimage-stamp/mcuboot_subimage-patch.rule"
+		},
+		{
+			"file" : "/Users/pierre.urtado/thingy53-ws/hsm/samples/imu_udp_thingy53/build_app/modules/mcuboot/mcuboot_subimage-prefix/src/mcuboot_subimage-stamp/mcuboot_subimage-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"mcuboot_subimage"
+		],
+		"name" : "mcuboot_subimage"
+	}
+}

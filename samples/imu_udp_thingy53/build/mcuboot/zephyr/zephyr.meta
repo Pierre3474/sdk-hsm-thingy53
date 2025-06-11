@@ -1,0 +1,102 @@
+modules:
+- name: hsm
+  path: /Users/pierre.urtado/thingy53-ws/hsm
+  revision: 3be33aa44fbfc8541e9367a92228e983b48603f9-dirty
+- name: nrf
+  path: /Users/pierre.urtado/thingy53-ws/nrf
+  revision: 8f26142b2f815d5a12e1f77ee8a6ea554a89b079
+- name: openthread
+  path: /Users/pierre.urtado/thingy53-ws/modules/lib/openthread
+  revision: 2060039bbfec52ac00f22a7cc3213c2ab1df138e
+- name: mcuboot
+  path: /Users/pierre.urtado/thingy53-ws/bootloader/mcuboot
+  revision: 9c58609b3d356d37602bd0a9b403c1ca4e78794e
+- name: mbedtls
+  path: /Users/pierre.urtado/thingy53-ws/modules/crypto/mbedtls
+  revision: c2a20560148691106ebcb45ff8f1e9557e536c56
+- name: cmsis
+  path: /Users/pierre.urtado/thingy53-ws/modules/hal/cmsis
+  revision: 74981bf893e8b10931464b9945e2143d99a3f0a3
+- name: fatfs
+  path: /Users/pierre.urtado/thingy53-ws/modules/fs/fatfs
+  revision: 38f303ad09fdd687ee066a938f65ad708dd5989d
+- name: hal_nordic
+  path: /Users/pierre.urtado/thingy53-ws/modules/hal/nordic
+  revision: fe0be3c3546e136a67264084c0e3edfd7354645a
+- name: libmetal
+  path: /Users/pierre.urtado/thingy53-ws/modules/hal/libmetal
+  revision: efa2ace6028290ddee494a78ade772a0b112ab83-dirty
+- name: littlefs
+  path: /Users/pierre.urtado/thingy53-ws/modules/fs/littlefs
+  revision: ca583fd297ceb48bced3c2548600dc615d67af24
+- name: lvgl
+  path: /Users/pierre.urtado/thingy53-ws/modules/lib/gui/lvgl
+  revision: 5ab83099854719ed326b6ecb9b09b07b1eee4818
+- name: mipi-sys-t
+  path: /Users/pierre.urtado/thingy53-ws/modules/debug/mipi-sys-t
+  revision: 0d521d8055f3b2b4842f728b0365d3f0ece9c37f
+- name: nrf_hw_models
+  path: /Users/pierre.urtado/thingy53-ws/modules/bsim_hw_models/nrf_hw_models
+  revision: 65bc5305d432c08e24a3f343006d1e7deaff4908
+- name: open-amp
+  path: /Users/pierre.urtado/thingy53-ws/modules/lib/open-amp
+  revision: aedcc262f93bbb1b0c2f58026911575729b7465c-dirty
+- name: segger
+  path: /Users/pierre.urtado/thingy53-ws/modules/debug/segger
+  revision: d4e568a920b4bd087886170a5624c167b2d0665e
+- name: tinycrypt
+  path: /Users/pierre.urtado/thingy53-ws/modules/crypto/tinycrypt
+  revision: 3e9a49d2672ec01435ffbf0d788db6d95ef28de0
+- name: nrfxlib
+  path: /Users/pierre.urtado/thingy53-ws/nrfxlib
+  revision: 6d0f58448fae164cfa4d28c494d6bddf5d0d0224
+west:
+  manifest: /Users/pierre.urtado/thingy53-ws/hsm/west.yml
+  projects:
+  - path: /Users/pierre.urtado/thingy53-ws/hsm
+    revision: 3be33aa44fbfc8541e9367a92228e983b48603f9-dirty
+  - path: /Users/pierre.urtado/thingy53-ws/nrf
+    revision: 8f26142b2f815d5a12e1f77ee8a6ea554a89b079
+  - path: /Users/pierre.urtado/thingy53-ws/nrfxlib
+    revision: 6d0f58448fae164cfa4d28c494d6bddf5d0d0224
+  - path: /Users/pierre.urtado/thingy53-ws/zephyr
+    revision: fcaa60a99fa9d5256078ed28557856ec3709cfa9-dirty-off
+  - path: /Users/pierre.urtado/thingy53-ws/modules/lib/openthread
+    revision: 2060039bbfec52ac00f22a7cc3213c2ab1df138e
+  - path: /Users/pierre.urtado/thingy53-ws/bootloader/mcuboot
+    revision: 9c58609b3d356d37602bd0a9b403c1ca4e78794e
+  - path: /Users/pierre.urtado/thingy53-ws/modules/crypto/mbedtls
+    revision: c2a20560148691106ebcb45ff8f1e9557e536c56
+  - path: /Users/pierre.urtado/thingy53-ws/modules/hal/cmsis
+    revision: 74981bf893e8b10931464b9945e2143d99a3f0a3
+  - path: /Users/pierre.urtado/thingy53-ws/tools/edtt
+    revision: 000fb87261beaf33f80a8868e73857bd62edc668
+  - path: /Users/pierre.urtado/thingy53-ws/modules/fs/fatfs
+    revision: 38f303ad09fdd687ee066a938f65ad708dd5989d
+  - path: /Users/pierre.urtado/thingy53-ws/modules/hal/nordic
+    revision: fe0be3c3546e136a67264084c0e3edfd7354645a
+  - path: /Users/pierre.urtado/thingy53-ws/modules/hal/libmetal
+    revision: efa2ace6028290ddee494a78ade772a0b112ab83-dirty-off
+  - path: /Users/pierre.urtado/thingy53-ws/modules/fs/littlefs
+    revision: ca583fd297ceb48bced3c2548600dc615d67af24
+  - path: /Users/pierre.urtado/thingy53-ws/modules/lib/gui/lvgl
+    revision: 5ab83099854719ed326b6ecb9b09b07b1eee4818
+  - path: /Users/pierre.urtado/thingy53-ws/modules/debug/mipi-sys-t
+    revision: 0d521d8055f3b2b4842f728b0365d3f0ece9c37f
+  - path: /Users/pierre.urtado/thingy53-ws/tools/net-tools
+    revision: e0828aa9629b533644dc96ff6d1295c939bd713c
+  - path: /Users/pierre.urtado/thingy53-ws/modules/bsim_hw_models/nrf_hw_models
+    revision: 65bc5305d432c08e24a3f343006d1e7deaff4908
+  - path: /Users/pierre.urtado/thingy53-ws/modules/lib/open-amp
+    revision: aedcc262f93bbb1b0c2f58026911575729b7465c-dirty-off
+  - path: /Users/pierre.urtado/thingy53-ws/modules/debug/segger
+    revision: d4e568a920b4bd087886170a5624c167b2d0665e
+  - path: /Users/pierre.urtado/thingy53-ws/modules/crypto/tinycrypt
+    revision: 3e9a49d2672ec01435ffbf0d788db6d95ef28de0
+workspace:
+  dirty: true
+  extra: false
+  'off': true
+zephyr:
+  path: /Users/pierre.urtado/thingy53-ws/zephyr
+  revision: fcaa60a99fa9d5256078ed28557856ec3709cfa9-dirty

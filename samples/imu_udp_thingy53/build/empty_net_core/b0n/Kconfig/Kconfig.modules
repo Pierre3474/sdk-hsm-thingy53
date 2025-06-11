@@ -1,0 +1,60 @@
+menu "hsm (/Users/pierre.urtado/thingy53-ws/hsm)"
+osource "/Users/pierre.urtado/thingy53-ws/hsm/Kconfig.hsm"
+config ZEPHYR_HSM_MODULE
+	bool
+	default y
+endmenu
+menu "nrf (/Users/pierre.urtado/thingy53-ws/nrf)"
+osource "/Users/pierre.urtado/thingy53-ws/nrf/Kconfig.nrf"
+config ZEPHYR_NRF_MODULE
+	bool
+	default y
+endmenu
+menu "openthread (/Users/pierre.urtado/thingy53-ws/modules/lib/openthread)"
+osource "$(ZEPHYR_OPENTHREAD_KCONFIG)"
+config ZEPHYR_OPENTHREAD_MODULE
+	bool
+	default y
+endmenu
+menu "mcuboot (/Users/pierre.urtado/thingy53-ws/bootloader/mcuboot)"
+osource "$(ZEPHYR_MCUBOOT_KCONFIG)"
+config ZEPHYR_MCUBOOT_MODULE
+	bool
+	default y
+endmenu
+menu "mbedtls (/Users/pierre.urtado/thingy53-ws/modules/crypto/mbedtls)"
+osource "$(ZEPHYR_MBEDTLS_KCONFIG)"
+config ZEPHYR_MBEDTLS_MODULE
+	bool
+	default y
+endmenu
+menu "fatfs (/Users/pierre.urtado/thingy53-ws/modules/fs/fatfs)"
+osource "$(ZEPHYR_FATFS_KCONFIG)"
+config ZEPHYR_FATFS_MODULE
+	bool
+	default y
+endmenu
+menu "hal_nordic (/Users/pierre.urtado/thingy53-ws/modules/hal/nordic)"
+osource "$(ZEPHYR_HAL_NORDIC_KCONFIG)"
+config ZEPHYR_HAL_NORDIC_MODULE
+	bool
+	default y
+endmenu
+menu "littlefs (/Users/pierre.urtado/thingy53-ws/modules/fs/littlefs)"
+osource "$(ZEPHYR_LITTLEFS_KCONFIG)"
+config ZEPHYR_LITTLEFS_MODULE
+	bool
+	default y
+endmenu
+menu "lvgl (/Users/pierre.urtado/thingy53-ws/modules/lib/gui/lvgl)"
+osource "/Users/pierre.urtado/thingy53-ws/modules/lib/gui/lvgl/zephyr/Kconfig"
+config ZEPHYR_LVGL_MODULE
+	bool
+	default y
+endmenu
+menu "nrfxlib (/Users/pierre.urtado/thingy53-ws/nrfxlib)"
+osource "/Users/pierre.urtado/thingy53-ws/nrfxlib/Kconfig.nrfxlib"
+config ZEPHYR_NRFXLIB_MODULE
+	bool
+	default y
+endmenu

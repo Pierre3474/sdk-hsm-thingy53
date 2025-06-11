@@ -1,0 +1,100 @@
+/* SPDX-License-Identifier: LicenseRef-Nordic-5-Clause */
+#include <dt-bindings/gpio/gpio.h>
+#include <dt-bindings/spi/spi.h>
+#include <dt-bindings/pinctrl/nrf-pinctrl.h>
+
+/ {
+    aliases {
+        battery-charge = &battery_charge_gpio;
+    };
+
+    /* GPIO utilisateur pour la détection de charge de la batterie */
+    zephyr,user {
+        battery-charge-gpios = <&gpio1 0 (GPIO_PULL_UP | GPIO_ACTIVE_LOW)>;
+    };
+
+    /* Définition simple du GPIO pour la détection de charge de la batterie */
+    battery_charge_gpio: battery-charge-gpio {
+        compatible = "gpio-leds";
+        gpios = <&gpio1 0 (GPIO_PULL_UP | GPIO_ACTIVE_LOW)>;
+        label = "Battery charge detection";
+    };
+};
+
+/* Configuration de l'ADC */
+&adc {
+    #address-cells = <1>;
+    #size-cells = <0>;
+    channel@2 {
+        reg = <2>;
+        zephyr,gain = "ADC_GAIN_1";
+        zephyr,reference = "ADC_REF_INTERNAL";
+        zephyr,acquisition-time = <40>; /* Temps d'acquisition en microsecondes */
+        zephyr,input-positive = <2>;    /* NRF_SAADC_AIN2 */
+        zephyr,resolution = <12>;
+        zephyr,oversampling = <4>;
+    };
+};
+
+/* Bus I2C avec les capteurs BH1749 et BME688 */
+&i2c1 {
+    status = "okay";
+    clock-frequency = <I2C_BITRATE_FAST>;
+    
+    bh1749@38 {
+        compatible = "rohm,bh1749";
+        reg = <0x38>;
+        int-gpios = <&gpio1 5 (GPIO_PULL_UP | GPIO_ACTIVE_LOW)>;
+    };
+    
+    bme688@76 {
+        compatible = "bosch,bme688";
+        reg = <0x76>;
+    };
+};
+
+/* Configuration Pinctrl pour SPI4 */
+&pinctrl {
+    spi4_default: spi4_default {
+        group1 {
+            psels = <NRF_PSEL(SPIM_SCK, 1, 15)>,
+                    <NRF_PSEL(SPIM_MOSI, 1, 13)>,
+                    <NRF_PSEL(SPIM_MISO, 1, 14)>;
+        };
+    };
+    
+    spi4_sleep: spi4_sleep {
+        group1 {
+            psels = <NRF_PSEL(SPIM_SCK, 1, 15)>,
+                    <NRF_PSEL(SPIM_MOSI, 1, 13)>,
+                    <NRF_PSEL(SPIM_MISO, 1, 14)>;
+            low-power-enable;
+        };
+    };
+};
+
+/* Configuration SPI4 avec BMI270 */
+&spi4 {
+    compatible = "nordic,nrf-spim";
+    status = "okay";
+    pinctrl-0 = <&spi4_default>;
+    pinctrl-1 = <&spi4_sleep>;
+    pinctrl-names = "default", "sleep";
+    cs-gpios = <&gpio1 4 GPIO_ACTIVE_LOW>;
+    
+    /* Workaround pour spi_fwd si nécessaire */
+    spi_fwd: spi_fwd@0 {
+        status = "disabled";
+        reg = <0>;
+    };
+    
+    bmi270@0 {
+        compatible = "bosch,bmi270";
+        reg = <0>;
+        status = "okay";
+        spi-max-frequency = <8000000>;
+        /* Décommentez si vous utilisez la broche INT :
+         * int-gpios = <&gpio1 6 (GPIO_PULL_UP | GPIO_ACTIVE_LOW)>;
+         */
+    };
+};

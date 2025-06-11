@@ -1,0 +1,13 @@
+# Target labels
+ empty_net_core_subimage
+# Source files and their labels
+/Users/pierre.urtado/thingy53-ws/hsm/samples/imu_udp_thingy53/build/modules/nrf/samples/CMakeFiles/empty_net_core_subimage
+/Users/pierre.urtado/thingy53-ws/hsm/samples/imu_udp_thingy53/build/modules/nrf/samples/CMakeFiles/empty_net_core_subimage.rule
+/Users/pierre.urtado/thingy53-ws/hsm/samples/imu_udp_thingy53/build/modules/nrf/samples/CMakeFiles/empty_net_core_subimage-complete.rule
+/Users/pierre.urtado/thingy53-ws/hsm/samples/imu_udp_thingy53/build/modules/nrf/samples/empty_net_core_subimage-prefix/src/empty_net_core_subimage-stamp/empty_net_core_subimage-build.rule
+/Users/pierre.urtado/thingy53-ws/hsm/samples/imu_udp_thingy53/build/modules/nrf/samples/empty_net_core_subimage-prefix/src/empty_net_core_subimage-stamp/empty_net_core_subimage-configure.rule
+/Users/pierre.urtado/thingy53-ws/hsm/samples/imu_udp_thingy53/build/modules/nrf/samples/empty_net_core_subimage-prefix/src/empty_net_core_subimage-stamp/empty_net_core_subimage-download.rule
+/Users/pierre.urtado/thingy53-ws/hsm/samples/imu_udp_thingy53/build/modules/nrf/samples/empty_net_core_subimage-prefix/src/empty_net_core_subimage-stamp/empty_net_core_subimage-install.rule
+/Users/pierre.urtado/thingy53-ws/hsm/samples/imu_udp_thingy53/build/modules/nrf/samples/empty_net_core_subimage-prefix/src/empty_net_core_subimage-stamp/empty_net_core_subimage-mkdir.rule
+/Users/pierre.urtado/thingy53-ws/hsm/samples/imu_udp_thingy53/build/modules/nrf/samples/empty_net_core_subimage-prefix/src/empty_net_core_subimage-stamp/empty_net_core_subimage-patch.rule
+/Users/pierre.urtado/thingy53-ws/hsm/samples/imu_udp_thingy53/build/modules/nrf/samples/empty_net_core_subimage-prefix/src/empty_net_core_subimage-stamp/empty_net_core_subimage-update.rule

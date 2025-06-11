@@ -1,0 +1,43 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/Users/pierre.urtado/thingy53-ws/hsm/samples/imu_udp_thingy53/build_app/empty_net_core/modules/nrf/samples/CMakeFiles/b0n_subimage"
+		},
+		{
+			"file" : "/Users/pierre.urtado/thingy53-ws/hsm/samples/imu_udp_thingy53/build_app/empty_net_core/modules/nrf/samples/CMakeFiles/b0n_subimage.rule"
+		},
+		{
+			"file" : "/Users/pierre.urtado/thingy53-ws/hsm/samples/imu_udp_thingy53/build_app/empty_net_core/modules/nrf/samples/CMakeFiles/b0n_subimage-complete.rule"
+		},
+		{
+			"file" : "/Users/pierre.urtado/thingy53-ws/hsm/samples/imu_udp_thingy53/build_app/empty_net_core/modules/nrf/samples/b0n_subimage-prefix/src/b0n_subimage-stamp/b0n_subimage-build.rule"
+		},
+		{
+			"file" : "/Users/pierre.urtado/thingy53-ws/hsm/samples/imu_udp_thingy53/build_app/empty_net_core/modules/nrf/samples/b0n_subimage-prefix/src/b0n_subimage-stamp/b0n_subimage-configure.rule"
+		},
+		{
+			"file" : "/Users/pierre.urtado/thingy53-ws/hsm/samples/imu_udp_thingy53/build_app/empty_net_core/modules/nrf/samples/b0n_subimage-prefix/src/b0n_subimage-stamp/b0n_subimage-download.rule"
+		},
+		{
+			"file" : "/Users/pierre.urtado/thingy53-ws/hsm/samples/imu_udp_thingy53/build_app/empty_net_core/modules/nrf/samples/b0n_subimage-prefix/src/b0n_subimage-stamp/b0n_subimage-install.rule"
+		},
+		{
+			"file" : "/Users/pierre.urtado/thingy53-ws/hsm/samples/imu_udp_thingy53/build_app/empty_net_core/modules/nrf/samples/b0n_subimage-prefix/src/b0n_subimage-stamp/b0n_subimage-mkdir.rule"
+		},
+		{
+			"file" : "/Users/pierre.urtado/thingy53-ws/hsm/samples/imu_udp_thingy53/build_app/empty_net_core/modules/nrf/samples/b0n_subimage-prefix/src/b0n_subimage-stamp/b0n_subimage-patch.rule"
+		},
+		{
+			"file" : "/Users/pierre.urtado/thingy53-ws/hsm/samples/imu_udp_thingy53/build_app/empty_net_core/modules/nrf/samples/b0n_subimage-prefix/src/b0n_subimage-stamp/b0n_subimage-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"b0n_subimage"
+		],
+		"name" : "b0n_subimage"
+	}
+}
